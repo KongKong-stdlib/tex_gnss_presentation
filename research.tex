@@ -1,265 +1,278 @@
-\section{研究内容}
+% computing position and velocity of satellite
+\section{卫星位置}
 
-\subsection{美化主题}
-
-\begin{frame}{这一份主题与原始的THU Beamer Theme区别在于}
-    \begin{itemize}
-        \item 顶栏的小点变成一行而不是多行
-        \item 中文采用楷书
-        \item 剩下我改了啥我也忘了……我16年魔改的，都四年过去了（x
-        \item 更多该模板的功能可以参考 \url{https://www.latexstudio.net/archives/4051.html}
-        \item 下面列举出了一些Beamer的用法，部分节选自 \url{https://tuna.moe/event/2018/latex/}
-    \end{itemize}
-\end{frame}
-
-\subsection{如何更好地做Beamer}
-
-\begin{frame}{Why Beamer}
-    \begin{itemize}
-        \item \LaTeX 广泛用于学术界，期刊会议论文模板
-    \end{itemize}
-    \begin{table}[h]
-        \centering
-        \begin{tabular}{c|c}
-            Microsoft\textsuperscript{\textregistered}  Word & \LaTeX \\
-            \hline
-            文字处理工具 & 专业排版软件 \\
-            容易上手，简单直观 & 容易上手 \\
-            所见即所得 & 所见即所想，所想即所得 \\
-            高级功能不易掌握 & 进阶难，但一般用不到 \\
-            处理长文档需要丰富经验 & 和短文档处理基本无异 \\
-            花费大量时间调格式 & 无需担心格式，专心作者内容 \\
-            公式排版差强人意 & 尤其擅长公式排版 \\
-            二进制格式，兼容性差 & 文本文件，易读、稳定 \\
-            付费商业许可 & 自由免费使用 \\
-        \end{tabular}
-    \end{table}
-\end{frame}
-
-\begin{frame}{排版举例}
-    \begin{exampleblock}{无编号公式} % 加 * 
-        \begin{equation*}
-            J(\theta) = \mathbb{E}_{\pi_\theta}[G_t] = \sum_{s\in\mathcal{S}} d^\pi (s)V^\pi(s)=\sum_{s\in\mathcal{S}} d^\pi(s)\sum_{a\in\mathcal{A}}\pi_\theta(a|s)Q^\pi(s,a)
-        \end{equation*}
-    \end{exampleblock}
-    \begin{exampleblock}{多行多列公式\footnote{如果公式中有文字出现，请用 $\backslash$mathrm\{\} 或者 $\backslash$text\{\} 包含，不然就会变成 $clip$，在公式里看起来比 $\mathrm{clip}$ 丑非常多。}}
-        % 使用 & 分隔
-        \begin{align}
-            Q_\mathrm{target}&=r+\gamma Q^\pi(s^\prime, \pi_\theta(s^\prime)+\epsilon)\\
-            \epsilon&\sim\mathrm{clip}(\mathcal{N}(0, \sigma), -c, c)\nonumber
-        \end{align}
-    \end{exampleblock}
-\end{frame}
-
-\begin{frame}
-    \begin{exampleblock}{编号多行公式}
-        % Taken from Mathmode.tex
-        \begin{multline}
-            A=\lim_{n\rightarrow\infty}\Delta x\left(a^{2}+\left(a^{2}+2a\Delta x+\left(\Delta x\right)^{2}\right)\right.\label{eq:reset}\\
-            +\left(a^{2}+2\cdot2a\Delta x+2^{2}\left(\Delta x\right)^{2}\right)\\
-            +\left(a^{2}+2\cdot3a\Delta x+3^{2}\left(\Delta x\right)^{2}\right)\\
-            +\ldots\\
-            \left.+\left(a^{2}+2\cdot(n-1)a\Delta x+(n-1)^{2}\left(\Delta x\right)^{2}\right)\right)\\
-            =\frac{1}{3}\left(b^{3}-a^{3}\right)
-        \end{multline}
-    \end{exampleblock}
-\end{frame}
-
-\begin{frame}{图形与分栏}
-    % From thuthesis user guide.
-    \begin{minipage}[c]{0.3\linewidth}
-        \psset{unit=0.8cm}
-        \begin{pspicture}(-1.75,-3)(3.25,4)
-            \psline[linewidth=0.25pt](0,0)(0,4)
-            \rput[tl]{0}(0.2,2){$\vec e_z$}
-            \rput[tr]{0}(-0.9,1.4){$\vec e$}
-            \rput[tl]{0}(2.8,-1.1){$\vec C_{ptm{ext}}$}
-            \rput[br]{0}(-0.3,2.1){$\theta$}
-            \rput{25}(0,0){%
-            \psframe[fillstyle=solid,fillcolor=lightgray,linewidth=.8pt](-0.1,-3.2)(0.1,0)}
-            \rput{25}(0,0){%
-            \psellipse[fillstyle=solid,fillcolor=yellow,linewidth=3pt](0,0)(1.5,0.5)}
-            \rput{25}(0,0){%
-            \psframe[fillstyle=solid,fillcolor=lightgray,linewidth=.8pt](-0.1,0)(0.1,3.2)}
-            \rput{25}(0,0){\psline[linecolor=red,linewidth=1.5pt]{->}(0,0)(0.,2)}
-%           \psRotation{0}(0,3.5){$\dot\phi$}
-%           \psRotation{25}(-1.2,2.6){$\dot\psi$}
-            \psline[linecolor=red,linewidth=1.25pt]{->}(0,0)(0,2)
-            \psline[linecolor=red,linewidth=1.25pt]{->}(0,0)(3,-1)
-            \psline[linecolor=red,linewidth=1.25pt]{->}(0,0)(2.85,-0.95)
-            \psarc{->}{2.1}{90}{112.5}
-            \rput[bl](.1,.01){C}
-        \end{pspicture}
-    \end{minipage}\hspace{1cm}
-    \begin{minipage}{0.5\linewidth}
-        \medskip
-        %\hspace{2cm}
-        \begin{figure}[h]
-            \centering
-            \includegraphics[height=.4\textheight]{pic/dtmf.pdf}
-        \end{figure}
-    \end{minipage}
-\end{frame}
-
-\begin{frame}[fragile]{\LaTeX{} 常用命令}
-    \begin{exampleblock}{命令}
-        \centering
-        \footnotesize
-        \begin{tabular}{llll}
-            \cmd{chapter} & \cmd{section} & \cmd{subsection} & \cmd{paragraph} \\
-            章 & 节 & 小节 & 带题头段落 \\\hline
-            \cmd{centering} & \cmd{emph} & \cmd{verb} & \cmd{url} \\
-            居中对齐 & 强调 & 原样输出 & 超链接 \\\hline
-            \cmd{footnote} & \cmd{item} & \cmd{caption} & \cmd{includegraphics} \\
-            脚注 & 列表条目 & 标题 & 插入图片 \\\hline
-            \cmd{label} & \cmd{cite} & \cmd{ref} \\
-            标号 & 引用参考文献 & 引用图表公式等\\\hline
-        \end{tabular}
-    \end{exampleblock}
-    \begin{exampleblock}{环境}
-        \centering
-        \footnotesize
-        \begin{tabular}{lll}
-            \env{table} & \env{figure} & \env{equation}\\
-            表格 & 图片 & 公式 \\\hline
-            \env{itemize} & \env{enumerate} & \env{description}\\
-            无编号列表 & 编号列表 & 描述 \\\hline
-        \end{tabular}
-    \end{exampleblock}
-\end{frame}
-
-\begin{frame}[fragile]{\LaTeX{} 环境命令举例}
-    \begin{minipage}{0.5\linewidth}
-\begin{lstlisting}[language=TeX]
-\begin{itemize}
-  \item A \item B
-  \item C
-  \begin{itemize}
-    \item C-1
-  \end{itemize}
-\end{itemize}
-\end{lstlisting}
-    \end{minipage}\hspace{1cm}
-    \begin{minipage}{0.3\linewidth}
+\subsection{坐标系}
+\begin{frame}{常用坐标系}
+    \begin{itemize}[<+-| alert@+>]
+        \item 地心地固直角坐标系$\left( \mathrm{ECEF} \right)$
         \begin{itemize}
-            \item A
-            \item B
-            \item C
-            \begin{itemize}
-                \item C-1
-            \end{itemize}
+            \item[] 地心为坐标原点, $OZ$指向北极, $OX$指向参考子午面与地球赤道的交点
         \end{itemize}
-    \end{minipage}
-    \medskip
-    \pause
-    \begin{minipage}{0.5\linewidth}
-\begin{lstlisting}[language=TeX]
-\begin{enumerate}
-  \item 巨佬 \item 大佬
-  \item 萌新
-  \begin{itemize}
-    \item[n+e] 瑟瑟发抖
-  \end{itemize}
-\end{enumerate}
-\end{lstlisting}
-    \end{minipage}\hspace{1cm}
-    \begin{minipage}{0.3\linewidth}
-        \begin{enumerate}
-            \item 巨佬
-            \item 大佬
-            \item 萌新
-            \begin{itemize}
-                \item[n+e] 瑟瑟发抖
-            \end{itemize}
-        \end{enumerate}
-    \end{minipage}
-\end{frame}
-
-\begin{frame}[fragile]{\LaTeX{} 数学公式}
-    \begin{columns}
-        \begin{column}{.55\textwidth}
-\begin{lstlisting}[language=TeX]
-$V = \frac{4}{3}\pi r^3$
-
-\[
-  V = \frac{4}{3}\pi r^3
-\]
-
-\begin{equation}
-  \label{eq:vsphere}
-  V = \frac{4}{3}\pi r^3
-\end{equation}
-\end{lstlisting}
-        \end{column}
-        \begin{column}{.4\textwidth}
-            $V = \frac{4}{3}\pi r^3$
-            \[
-                V = \frac{4}{3}\pi r^3
-            \]
-            \begin{equation}
-                \label{eq:vsphere}
-                V = \frac{4}{3}\pi r^3
-            \end{equation}
-        \end{column}
-    \end{columns}
-    \begin{itemize}
-        \item 更多内容请看 \href{https://zh.wikipedia.org/wiki/Help:数学公式}{\color{purple}{这里}}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-    \begin{columns}
-        \column{.6\textwidth}
-\begin{lstlisting}[language=TeX]
-    \begin{table}[htbp]
-      \caption{编号与含义}
-      \label{tab:number}
-      \centering
-      \begin{tabular}{cl}
-        \toprule
-        编号 & 含义 \\
-        \midrule
-        1 & 4.0 \\
-        2 & 3.7 \\
-        \bottomrule
-      \end{tabular}
-    \end{table}
-    公式~(\ref{eq:vsphere}) 的
-    编号与含义请参见
-    表~\ref{tab:number}。
-\end{lstlisting}
-        \column{.4\textwidth}
-        \begin{table}[htpb]
-            \centering
-            \caption{编号与含义}
-            \label{tab:number}
-            \begin{tabular}{cl}\toprule
-                编号 & 含义 \\\midrule
-                1 & 4.0\\
-                2 & 3.7\\\bottomrule
-            \end{tabular}
-        \end{table}
-        \normalsize 公式~(\ref{eq:vsphere})的编号与含义请参见表~\ref{tab:number}。
-    \end{columns}
-\end{frame}
-
-\begin{frame}{作图}
-    \begin{itemize}
-        \item 矢量图 eps, ps, pdf
+        \item 经纬高坐标系$\left( \mathrm{ LLA } \right)$
         \begin{itemize}
-            \item METAPOST, pstricks, pgf $\ldots$
-            \item Xfig, Dia, Visio, Inkscape $\ldots$
-            \item Matlab / Excel 等保存为 pdf
+            \item[] 地心为坐标原点, 大地高度$h$是过该点到基准椭球面的法线距离
         \end{itemize}
-        \item 标量图 png, jpg, tiff $\ldots$
+        \item 站心坐标系$\left( \mathrm{ ENU } \right)$
         \begin{itemize}
-            \item 提高清晰度，避免发虚
-            \item 应尽量避免使用
+            \item[] 观测点为坐标原点, 三坐标轴分别指向东, 北, 天方向
         \end{itemize}
     \end{itemize}
-    \begin{figure}[htpb]
+\end{frame}
+
+\begin{frame}{坐标变化}
+    \begin{itemize}
+        \item $\mathrm{LLA} \rightarrow \mathrm{ECEF}$
+        \begin{align*}
+            x &= \left( N + h \right) \cos \varphi \cos \lambda \\
+            y &= \left( N + h \right) \cos \varphi \sin \lambda \\
+            z &= \left[ N \left( 1 - \mathrm e ^ 2 \right) + h \right] \sin \varphi
+        \end{align*}
+        其中,
+        \begin{align*}
+            \mathrm e &= \sqrt{ 1 - \frac{ b ^ 2 }{ a ^ 2 } } \\
+            N &= \frac{ a }{ \sqrt{ 1 - \mathrm e ^ 2 \sin ^ 2 \varphi } }
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{坐标变换}
+    \begin{itemize}
+        \item $\mathrm{ECEF} \rightarrow \mathrm{LLA}$
+        \begin{align*}
+            \lambda &= \arctan \frac{ y }{ x } \\
+            h &= \frac{ \sqrt{ x ^ 2 + y ^ 2 } }{ \cos \varphi } - N \\
+            \varphi &= \arctan \left[ \frac{ z }{ \sqrt{ x ^ 2 + y ^ 2 } }
+            \left( 1 - \mathrm e ^ 2 \frac{ N }{ N + h } \right) ^ { -1 }\right]
+        \end{align*}
+        其中, $h$与$\varphi$组成耦合非线性方程组, 采用迭代方法求解.
+    \end{itemize}
+\end{frame}
+
+\subsection{星历文件}
+\begin{frame}{星历文件主要参数}
+\begin{table}[h!]
+    \centering
+    \footnotesize
+    \caption{星历文件参数}
+    \begin{tabular}{ccc}
+        \hline
+        $t _ { 0e }$ && 星历参考时刻 \\
+        $\sqrt{ a }$ && 轨道半长轴的平方根 \\
+        $e$ && 轨道离心率 \\
+        $i _ 0$ && $t _ { 0e }$时刻轨道倾角 \\
+        $\Omega _ 0$ && 升交点经度 \\
+        $\omega$ && $t _ { 0e }$时刻近地点幅角 \\
+        $M _ 0$ && $t _ { 0e }$时刻平近点角 \\
+        $\mathrm d i / \mathrm d t$ && 倾角变化率 \\
+        $\mathrm d \Omega / \mathrm d t$ && 升交点经度变化率 \\
+        $\Delta n$ && 平均角速度的校正值 \\
+        $C _ { uc }$ && 维度幅角余弦修正值 \\
+        $C _ { us }$ && 维度幅角正弦修正值 \\
+        $C _ { rc }$ && 轨道半径余弦修正值 \\
+        $C _ { rs }$ && 轨道半径正弦修正值 \\
+        $C _ { ic }$ && 倾角余弦修正值 \\
+        $C _ { is }$ && 倾角正弦修正值 \\
+        \hline
+    \end{tabular}
+    \label{tab:ephemeris_para}
+\end{table}
+\end{frame}
+
+\begin{frame}{计算卫星位置}
+    \begin{figure}
         \centering
-        \includegraphics[width=0.2\linewidth]{pic/Tsinghua_University_Logo.eps}
-        \caption{这个校徽就是矢量图}
+        \includegraphics[width = .7\textwidth]{pic/algo_ephemeris.jpg}
+        \label{fig:alg_ephemeris}
     \end{figure}
+\end{frame}
+
+% computing distance
+\section{距离}
+
+\subsection{伪距模型}
+\begin{frame}{伪距}
+    \begin{itemize}
+        \item 接收机钟差$\delta _ t ^ A$, 卫星钟差$\delta _ t ^ { S _ i }$
+        \item 卫星信号发射时间$t _ s ^ { S _ i }$, 接收机信号接收时间$t _ u ^ A$
+        \begin{align*}
+            \rho _ u ^ { S _ i } &= c \left( t _ u ^ A - t _ s ^ { S _ i } \right)
+        \end{align*}
+        \item 电离层延时$I ^ { S _ i }$, 对流程延时$T ^ { S _ i }$
+        \begin{align*}
+            \rho _ { I + T } ^ { S _ i } &= c \left( I ^ { S _ i } + T ^ { S _ i } \right)
+        \end{align*}
+        \item 噪声延时$\varepsilon _ P ^ { S _ i }$
+        \begin{align*}
+            \rho _ {\varepsilon _ P} ^ { S _ i } &= c \varepsilon _ P ^ { S _ i }
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{接收机与卫星几何距离$\rho _ A ^ { S _ i }$}
+    \begin{itemize}
+        \item $A \left( x _ A, y _ A, z _ A \right)$与
+        $S _ i \left( x _ S ^ i, y _ S ^ i, z _ S ^ i \right)$几何距离
+        \begin{align*}
+            \rho _ A ^ { S _ i } &= \sqrt{ \left( x _ A - x _ S ^ i \right) ^ 2 
+            + \left( y _ A - y _ S ^ i \right) ^ 2 
+            + \left( z _ A - z _ S ^ i \right) ^ 2 } \\
+            &= c \left[ \left( t _ u ^ A - \delta _ t ^ A \right)
+            - \left( t _ s ^ { S _ i } - \delta _ t ^ { S _ i } \right)
+            - \left( I ^ { S _ i } + T ^ { S _ i } \right)
+            - \varepsilon _ P ^ { S _ i } \right] \\
+            &= \rho _ u ^ { S _ i } + c \delta _ t ^ { S _ i }
+            - \rho _ { I + T } ^ { S _ i } - \rho _ {\varepsilon _ P} ^ { S _ i } - c \delta _ t ^ A
+        \end{align*} \pause
+        \item 位置方程表述如下
+        \begin{align*}
+            \rho _ A ^ { S _ i } + c \delta _ t ^ A &= \rho _ u ^ { S _ i } + c \delta _ t ^ { S _ i }
+            - \rho _ { I + T } ^ { S _ i } - \rho _ {\varepsilon _ P} ^ { S _ i }, \ i = 1, 2, \ldots
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\subsection{载波相位模型}
+\begin{frame}{载波相位}
+    \begin{itemize}
+        \item 接收机复制的卫星载波信号相位$\phi _ u ^ A$, 接收机接收到的
+        卫星载波信号相位$\phi _ s ^ { S _ i }$, 电磁波在此过程中传播的周期数
+        为$N _ A ^ { S _ i }$, 无误差的情况下, 卫星与接收机之间的距离$R _ A ^ { S _ i }$
+        \begin{align*}
+            R _ A ^ { S _ i } &= \lambda _ L \left( \phi _ u ^ A 
+            - \phi _ s ^ { S _ i } + N _ A ^ { S _ i } \right)
+        \end{align*}
+        \item 误差项
+        \begin{itemize}
+            \item 电离层延时$I ^ { S _ i }$, 对流层延时$T ^ { S _ i }$
+            \item 接收机钟差$\delta _ t ^ A$, 卫星钟差$\delta _ t ^ { S _ i }$
+            \item 噪声延时$\varepsilon _ \phi ^ { S _ i }$
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{载波相位模型}
+    \begin{itemize}
+        \item 初始相位
+        \begin{align*}
+            \phi _ { u, 0 } ^ A &= \phi _ u ^ A \left( t _ 0 \right) \\
+            \phi _ { s, 0 } ^ { S _ i } &= \phi _ s ^ { S _ i } \left( t _ 0 \right)
+        \end{align*}
+        \item 相位差
+        \begin{align*}
+            \phi _ A ^ { S _ i } &= \phi _ u ^ A \left( t _ u ^ A \right)
+            - \phi _ s ^ { S _ i } \left( t _ s ^ { S _ i } \right) 
+            + \frac{ c }{ \lambda _ L } I ^ { S _ i } - \frac{ c }{ \lambda _ L } T ^ { S _ i }
+            + N _ A ^ { S _ i }
+            - \varepsilon _ \phi ^ { S _ i } \\
+            &= \left[ \frac{ c }{ \lambda _ L } \left( t _ u ^ A 
+            - \delta _ t ^ A - t _ 0 \right)  + \phi _ { u, 0 } ^ A \right] 
+            - \left[ \frac{ c }{ \lambda _ L } \left( t _ s ^ { S _ i } 
+            - \delta _ t ^ { S _ i } - t _ o \right) + \phi _ { s, 0 } ^ { S _ i } \right] \\
+            &+ N _ A ^ { S _ i } + \frac{ c }{ \lambda _ L } I ^ { S _ i } 
+            - \frac{ c }{ \lambda _ L } T ^ { S _ i }
+            - \varepsilon _ \phi ^ { S _ i }
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{接收机与卫星几何距离$\rho _ A ^ { S _ i }$}
+    \begin{itemize}
+        \item $A \left( x _ A, y _ A, z _ A \right)$与
+        $S _ i \left( x _ S ^ i, y _ S ^ i, z _ S ^ i \right)$几何距离
+        \begin{align*}
+            \rho _ A ^ { S _ i } &= \sqrt{ \left( x _ A - x _ S ^ i \right) ^ 2 
+            + \left( y _ A - y _ S ^ i \right) ^ 2 
+            + \left( z _ A - z _ S ^ i \right) ^ 2 } \\
+            &= \lambda _ L \phi _ A ^ { S _ i } \\
+            &= c \left( t _ u ^ A - t _ s ^ { S _ i } \right) 
+            - c \left( \delta _ t ^ A - \delta _ t ^ { S _ i } \right) 
+            + \lambda _ L N _ A ^ { S _ i }
+            - \lambda _ L \varepsilon _ \phi ^ { S _ i } \\
+            &+ c \left( I ^ { S _ i } - T ^ { S _ i } \right) \\
+            &= \rho _ u ^ { S _ i } - c \left( \delta _ t ^ A - \delta _ t ^ { S _ i } \right) 
+            + \rho _ { I - T } ^ { S _ i } - \rho _ { \varepsilon _ \phi } ^ { S _ i }
+            + \lambda _ L N _ A ^ { S _ i }
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Remarks}
+    \begin{itemize}
+        \item 伪距模型$\rho _ A ^ { S _ i }$
+        \begin{align*}
+            \rho _ A ^ { S _ i } &= \rho _ u ^ { S _ i } - c \left( \delta _ t ^ A 
+            - \delta _ t ^ { S _ i } \right)
+            - \rho _ { I + T } ^ { S _ i } - \rho _ {\varepsilon _ P} ^ { S _ i }
+        \end{align*}
+        \item 载波相位模型$\rho _ A ^ { S _ i }$
+        \begin{align*}
+            \rho _ A ^ { S _ i } &= \rho _ u ^ { S _ i } - c \left( \delta _ t ^ A 
+            - \delta _ t ^ { S _ i } \right) 
+            + \rho _ { I - T } ^ { S _ i } - \rho _ { \varepsilon _ \phi } ^ { S _ i }
+            + \lambda _ L N _ A ^ { S _ i }
+        \end{align*}
+        \item 伪距与载波相位相结合, 不同测量时刻取差分, 消去周整模糊度
+    \end{itemize}
+\end{frame}
+
+% solving control equation
+\section{求解位置方程}
+
+\subsection{Newton迭代法}
+\begin{frame}{Newton迭代格式}
+    \begin{itemize}
+        \item 位置方程, 未知量$\left[ x _ A, y _ A, z _ A, \delta _ t ^ A \right] ^ \top$
+        \begin{align*}
+            \left\| x _ A - x _ S ^ 1, y _ A - y _ S ^ 1, z _ A - z _ S ^ 1 \right\| _ 2 
+            + c \delta _ t ^ A &= \tilde \rho _ 1 \\
+            &\vdots \\
+            \left\| x _ A - x _ S ^ n, y _ A - y _ S ^ n, z _ A - z _ S ^ n \right\| _ 2 
+            + c \delta _ t ^ A &= \tilde \rho _ n \\
+        \end{align*}
+        \item 记$f _ i \left( x _ A, y _ A, z _ A, \delta _ t ^ A \right) = \tilde \rho _ i$
+        \begin{align*}
+            f _ 1 \left( x _ A, y _ A, z _ A, \delta _ t ^ A \right) &= \tilde \rho _ 1 \\
+            &\vdots \\
+            f _ n \left( x _ A, y _ A, z _ A, \delta _ t ^ A \right) &= \tilde \rho _ n \\
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Newton迭代格式}
+    \begin{itemize}
+        \item[1] 迭代初值$\left[ x _ A ^ { (0) }, y _ A ^ { (0) }, z _ A ^ { (0) },
+        \left\{ \delta _ t ^ A \right\} ^ { (0) }  \right] ^ \top$
+        \item[2] 迭代格式, 记$u ^ { (k) } = \left[ x _ A ^ { (k) }, y _ A ^ { (k) },
+        z _ A ^ { (k) }, \left\{ \delta _ t ^ A \right\} ^ { (k) } \right] ^ \top$
+        \begin{align*}
+            u ^ { ( k + 1 ) } &= u ^ { ( k ) } - J ^ { -1 } \left( u ^ { ( k ) } \right)
+            F \left( u ^ { ( k ) } \right),
+            \ k = 0, 1, \ldots
+        \end{align*}
+        \item[3] 满足收敛条件, 迭代终止
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Jacobi矩阵}
+    \begin{itemize}
+        \item 迭代格式中的$J \left( u \right)$定义如下
+        \begin{align*}
+            J &=
+            \begin{bmatrix}
+                    \frac{ \partial f _ 1 }{ \partial u _ 1 } & \ldots & 
+                    \frac{ \partial f _ 1 }{ \partial u _ 4 } \\
+                    \frac{ \partial f _ 2 }{ \partial u _ 1 } & \ldots & 
+                    \frac{ \partial f _ 2 }{ \partial u _ 4 } \\
+                    \vdots & & \vdots \\
+                    \frac{ \partial f _ n }{ \partial u _ 1 } & \ldots &
+                    \frac{ \partial f _ n }{ \partial u _ 4 }
+            \end{bmatrix}
+        \end{align*}
+        \item 迭代格式求解
+        \begin{align*}
+            J \left( u ^ { ( k ) } \right) \left( u ^ { ( k + 1 ) - u ^ { ( k ) } } \right) 
+            &= F \left( u ^ { ( k ) } \right), \ k = 0, 1, \ldots
+        \end{align*}
+        可求解此式的最小二乘解.
+    \end{itemize}
 \end{frame}

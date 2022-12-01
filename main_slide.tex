@@ -6,7 +6,7 @@
 \usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
 \usepackage{graphicx,pstricks,listings,stackengine}
 
-% 伪代码
+% algorithm package
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 
@@ -76,8 +76,9 @@
 \section{参考文献}
 
 \begin{frame}[allowframebreaks]
+    \nocite{*}
     \bibliography{ref}
-    \bibliographystyle{alpha}
+    \bibliographystyle{plain}
     % 如果参考文献太多的话，可以像下面这样调整字体：
     % \tiny\bibliographystyle{alpha}
 \end{frame}
