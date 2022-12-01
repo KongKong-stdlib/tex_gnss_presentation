@@ -1,0 +1,6 @@
+xelatex main_slide.tex
+bibtex main_slide.tex
+xelatex main_slide.tex
+xelatex main_slide.tex
+
+presentation template for GNSS
