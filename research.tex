@@ -151,3 +151,94 @@
 \end{frame}
 
 \subsection{差分定位方程求解}
+\begin{frame}{单差定位}
+    \begin{itemize}
+        \item 定位方程
+        \begin{align*}
+            \lambda \tilde \varphi _ { BR } ^ { S _ i } &= \rho _ { BR } ^ { S _ i } - c \delta t _ { BR }
+            - \lambda N _ { BR } ^ { S _ i } - V _ { \mathrm{ iono }, S _ i } ^ { BR } - V _ { \mathrm{ trop }, S _ i } ^ { BR }
+        \end{align*}
+        \item $\rho _ { BR } ^ { S _ i } = \rho _ R ^ { S _ i } - \rho _ B ^ { S _ i }$
+        \begin{align*}
+            \tilde F _ i \left( x, y, z \right) &= \sqrt{ \left( x - x ^ { S _ i } \right) ^ 2 
+            + \left( y - y ^ { S _ i } \right) ^ 2 + \left( z - z ^ { S _ i } \right) ^ 2 } \\
+            &- \sqrt{ \left( x ^ B - x ^ { S _ i } \right) ^ 2 + \left( y ^ B - y ^ { S _ i } \right) ^ 2 + \left( z ^ B - z ^ { S _ i } \right) ^ 2 }
+        \end{align*}
+        \item Taylor expansion
+        \begin{align*}
+            \tilde F _ i \left( x, y, z \right) &\approx \rho _ { \tilde R } ^ { S _ i }
+            + \frac{ \tilde x - x ^ { S _ i } }{ \rho _ { \tilde R } ^ { S _ i } } \left( x - \tilde x \right)
+            + \frac{ \tilde y - y ^ { S _ i } }{ \rho _ { \tilde R } ^ { S _ i } } \left( y - \tilde y \right) \\
+            &+ \frac{ \tilde z - z ^ { S _ i } }{ \rho _ { \tilde R } ^ { S _ i } } \left( z - \tilde z \right)
+            - \rho _ B ^ { S _ i }
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{单差定位}
+    \begin{itemize}
+        \item 线性化单差方程
+        \begin{align*}
+            \lambda \tilde \varphi _ { BR } ^ { S _ i } &= \frac{ \tilde x - x ^ { S _ i } }{ \rho _ { \tilde R } ^ { S _ i } } \left( x - \tilde x \right)
+            + \frac{ \tilde y - y ^ { S _ i } }{ \rho _ { \tilde R } ^ { S _ i } } \left( y - \tilde y \right)
+            + \frac{ \tilde z - z ^ { S _ i } }{ \rho _ { \tilde R } ^ { S _ i } } \left( z - \tilde z \right) \\
+            &+ \rho _ { \tilde R } ^ { S _ i } - \rho _ B ^ { S _ i } - c \delta t _ { BR } - \lambda N _ { BR } ^ { S _ i }
+            - V _ { \mathrm{ iono }, S _ i } ^ { BR } - V _ { \mathrm{ trop }, S _ i } ^ { BR }
+        \end{align*}
+        \item 基线表示$R\left( x ^ R, y ^ R, z ^R \right)$
+        \begin{align*}
+            \begin{bmatrix} x ^ R \\ y ^ R \\ z ^ R \end{bmatrix} &=
+            \begin{bmatrix} x ^ B \\ y ^ B \\ z ^ B \end{bmatrix} +
+            \begin{bmatrix} x ^ { \tilde R } - x ^ B \\ y ^ { \tilde R } - y ^ B \\ z ^ { \tilde R } - z ^ B \end{bmatrix} +
+            \begin{bmatrix} x - x ^ { \tilde R } \\ y - y ^ { \tilde R } \\ z - z ^ { \tilde R } \end{bmatrix}
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{双差定位}
+    \begin{itemize}
+        \item 定位方程
+        \begin{align*}
+            \lambda \tilde \varphi _ { RB } ^ { S _ { ij } } &= \rho _ { BR } ^ { S _ { ij } }
+            - \lambda N _ { BR } ^ { S _ { ij } } - V _ { \mathrm{ iono }, S _ { ij } } ^ { BR } - V _ { \mathrm{ trop }, S _ { ij } } ^ { BR }
+        \end{align*}
+        \item $\rho _ { BR } ^ { S _ { ij } } = \rho _ { BR } ^ { S _ i } - \rho _ { BR } ^ { S _ j }$
+        \begin{align*}
+            \tilde F _ { ij } \left( x, y, z \right) &= \left( \rho _ R ^ { S _ i } - \rho _ R ^ { S _ j } \right) 
+            - \left( \rho _ B ^ { S _ i } - \rho _ B ^ { S _ j } \right)
+        \end{align*}
+        \item Taylor expansion
+        \begin{align*}
+            \tilde F _ { ij } \left( x, y, z \right) &\approx \left( \rho _ { \tilde R } ^ { S _ { ij } } - \rho _ B ^ { S _ { ij } } \right)
+            + \left( \frac{ \tilde x - x ^ { S _ i } }{ \rho _ { \tilde R } ^ { S _ i } }
+            - \frac{ \tilde x - x ^ { S _ j } }{ \rho _ { \tilde R } ^ { S _ j } } \right) \mathrm d x \\
+            &+ \left( \frac{ \tilde y - y ^ { S _ i } }{ \rho _ { \tilde R } ^ { S _ i } }
+            - \frac{ \tilde y - y ^ { S _ j } }{ \rho _ { \tilde R } ^ { S _ j } } \right) \mathrm d y
+            + \left( \frac{ \tilde z - z ^ { S _ i } }{ \rho _ { \tilde R } ^ { S _ i } }
+            - \frac{ \tilde z - z ^ { S _ j } }{ \rho _ { \tilde R } ^ { S _ j } } \right) \mathrm d z
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{双差定位}
+    \begin{itemize}
+        \item 线性化双差方程
+        \begin{align*}
+            \lambda \tilde \varphi _ { RB } ^ { S _ { ij } } &= \left( \rho _ { \tilde R } ^ { S _ { ij } } - \rho _ B ^ { S _ { ij } } \right)
+            + \left( \frac{ \tilde x - x ^ { S _ i } }{ \rho _ { \tilde R } ^ { S _ i } }
+            - \frac{ \tilde x - x ^ { S _ j } }{ \rho _ { \tilde R } ^ { S _ j } } \right) \mathrm d x \\
+            &+ \left( \frac{ \tilde y - y ^ { S _ i } }{ \rho _ { \tilde R } ^ { S _ i } }
+            - \frac{ \tilde y - y ^ { S _ j } }{ \rho _ { \tilde R } ^ { S _ j } } \right) \mathrm d y
+            + \left( \frac{ \tilde z - z ^ { S _ i } }{ \rho _ { \tilde R } ^ { S _ i } }
+            - \frac{ \tilde z - z ^ { S _ j } }{ \rho _ { \tilde R } ^ { S _ j } } \right) \mathrm d z \\
+            &- \lambda N _ { BR } ^ { S _ { ij } } - V _ { \mathrm{ iono }, S _ { ij } } ^ { BR } - V _ { \mathrm{ trop }, S _ { ij } } ^ { BR }
+        \end{align*}
+        \item 基线表示$R\left( x ^ R, y ^ R, z ^R \right)$
+        \begin{align*}
+            \begin{bmatrix} x ^ R \\ y ^ R \\ z ^ R \end{bmatrix} &=
+            \begin{bmatrix} x ^ B \\ y ^ B \\ z ^ B \end{bmatrix} +
+            \begin{bmatrix} x ^ { \tilde R } - x ^ B \\ y ^ { \tilde R } - y ^ B \\ z ^ { \tilde R } - z ^ B \end{bmatrix} +
+            \begin{bmatrix} \mathrm d x \\ \mathrm d y \\ \mathrm d z \end{bmatrix}
+        \end{align*}
+    \end{itemize}
+\end{frame}
